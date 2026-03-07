@@ -10,7 +10,8 @@
     <title>Virtualis — NIS2/ZKS Compliance Platform</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <style>
         /* ===== RESET & VARIABLES ===== */
@@ -23,20 +24,18 @@
         }
 
         :root {
-            --bg-deep: #030712;
-            --bg-dark: #0a0f1e;
-            --bg-card: #111827;
-            --bg-card-hover: #1a2332;
-            --accent: #00ff9d;
-            --accent-glow: rgba(0, 255, 157, 0.15);
-            --accent-blue: #3b82f6;
-            --accent-purple: #8b5cf6;
+            --bg-deep: #020617;
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.5);
+            --bg-card-hover: rgba(51, 65, 85, 0.6);
+            --accent-red: #e11d48;
             --accent-cyan: #06b6d4;
-            --text: #f1f5f9;
+            --accent-emerald: #10b981;
+            --text: #f8fafc;
             --text-muted: #94a3b8;
-            --text-dim: #64748b;
-            --border: rgba(255, 255, 255, 0.06);
-            --radius: 16px;
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(15, 23, 42, 0.8);
+            --radius: 20px;
         }
 
         html {
@@ -44,52 +43,67 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             background: var(--bg-deep);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: opacity .2s;
+        h1,
+        h2,
+        h3,
+        .nav-logo {
+            font-family: 'Outfit', sans-serif;
         }
 
-        a:hover {
-            opacity: 0.8;
+        a {
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ===== BACKGROUND ELEMENTS ===== */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 80px 80px;
+            mask-image: radial-gradient(circle at center, black, transparent 80%);
+            z-index: -1;
+            opacity: 0.5;
         }
 
         /* ===== NAVIGATION ===== */
         nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 16px 40px;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1100px;
+            z-index: 1000;
+            padding: 12px 32px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(3, 7, 18, 0.7);
+            background: var(--glass);
             backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid var(--border);
-            transition: all 0.3s;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            transition: all 0.4s;
         }
 
         nav.scrolled {
-            padding: 10px 40px;
-            background: rgba(3, 7, 18, 0.95);
+            top: 12px;
+            width: 95%;
+            padding: 10px 24px;
         }
 
-        .nav-logo {
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .nav-logo-img {
+            height: 32px;
+            filter: drop-shadow(0 0 8px rgba(225, 29, 72, 0.3));
         }
 
         .nav-links {
@@ -100,709 +114,226 @@
 
         .nav-links a {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 500;
-            transition: color .2s;
         }
 
         .nav-links a:hover {
             color: var(--text);
-            opacity: 1;
         }
 
         .nav-cta {
-            background: var(--accent);
-            color: #030712;
+            background: var(--text);
+            color: var(--bg-deep);
             padding: 10px 24px;
-            border-radius: 10px;
+            border-radius: 100px;
             font-weight: 700;
-            font-size: 0.85rem;
-            transition: transform .2s, box-shadow .2s;
-            letter-spacing: 0.3px;
+            font-size: 0.9rem;
         }
 
         .nav-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 255, 157, 0.3);
-            opacity: 1;
-        }
-
-        .mobile-menu {
-            display: none;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: var(--text);
-            font-size: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         /* ===== HERO ===== */
         .hero {
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
+            padding: 140px 20px 80px;
             position: relative;
-            padding: 120px 20px 80px;
         }
 
-        .hero::before {
-            content: '';
+        .hero-glow {
             position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 255, 157, 0.08), transparent),
-                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(59, 130, 246, 0.06), transparent),
-                radial-gradient(ellipse 50% 30% at 20% 80%, rgba(139, 92, 246, 0.05), transparent);
-            pointer-events: none;
-        }
-
-        /* Animated grid lines */
-        .hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 100%);
-            pointer-events: none;
-            animation: gridFloat 20s linear infinite;
-        }
-
-        @keyframes gridFloat {
-            from {
-                transform: translateY(0);
-            }
-
-            to {
-                transform: translateY(60px);
-            }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(225, 29, 72, 0.1), transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            filter: blur(80px);
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 20px;
+            gap: 10px;
+            padding: 8px 16px;
+            background: rgba(225, 29, 72, 0.1);
+            border: 1px solid rgba(225, 29, 72, 0.2);
             border-radius: 100px;
-            background: rgba(0, 255, 157, 0.08);
-            border: 1px solid rgba(0, 255, 157, 0.2);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            color: var(--accent);
-            margin-bottom: 28px;
+            color: var(--accent-red);
+            margin-bottom: 32px;
             letter-spacing: 0.5px;
-        }
-
-        .hero-badge .pulse {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--accent);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-
-            50% {
-                opacity: 0.5;
-                transform: scale(1.5);
-            }
+            backdrop-filter: blur(4px);
         }
 
         .hero h1 {
-            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            font-size: clamp(3rem, 8vw, 6rem);
             font-weight: 900;
-            letter-spacing: -2px;
-            line-height: 1.05;
-            margin-bottom: 24px;
-        }
-
-        .hero h1 .gradient {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-cyan) 50%, var(--accent-blue) 100%);
+            letter-spacing: -3px;
+            line-height: 0.95;
+            margin-bottom: 32px;
+            background: linear-gradient(to bottom, #fff 40%, rgba(255, 255, 255, 0.6));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.7;
+            max-width: 650px;
+            margin: 0 auto 48px;
+            line-height: 1.6;
         }
 
-        .hero-buttons {
+        .hero-btns {
             display: flex;
-            gap: 16px;
+            gap: 20px;
             justify-content: center;
-            flex-wrap: wrap;
         }
 
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, var(--accent), #00d68f);
-            color: #030712;
-            padding: 16px 36px;
-            border-radius: 14px;
+        .btn {
+            padding: 18px 40px;
+            border-radius: 100px;
+            font-size: 1.1rem;
             font-weight: 700;
-            font-size: 1rem;
-            border: none;
-            cursor: pointer;
-            transition: transform .2s, box-shadow .2s;
-            letter-spacing: 0.3px;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 16px 40px rgba(0, 255, 157, 0.25);
-            opacity: 1;
-        }
-
-        .btn-secondary {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            color: var(--text);
-            padding: 16px 36px;
-            border-radius: 14px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all .2s;
+            gap: 12px;
         }
 
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.2);
+        .btn-main {
+            background: var(--accent-red);
+            color: white;
+            box-shadow: 0 0 30px rgba(225, 29, 72, 0.3);
+        }
+
+        .btn-main:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(225, 29, 72, 0.4);
+        }
+
+        .btn-side {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-side:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
 
         /* ===== SECTIONS ===== */
         section {
-            padding: 100px 20px;
-            position: relative;
+            padding: 120px 20px;
         }
 
         .container {
-            max-width: 1160px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .section-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 16px;
+        .section-header {
+            margin-bottom: 64px;
         }
 
-        .section-title {
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            font-weight: 800;
-            letter-spacing: -1px;
-            line-height: 1.15;
-            margin-bottom: 20px;
-            max-width: 700px;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            line-height: 1.7;
-            margin-bottom: 48px;
-        }
-
-        /* ===== PROBLEM SECTION ===== */
-        .problem {
-            background: linear-gradient(180deg, var(--bg-deep) 0%, #0c1222 100%);
-        }
-
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin-top: 48px;
-        }
-
-        .problem-card {
-            background: rgba(239, 68, 68, 0.04);
-            border: 1px solid rgba(239, 68, 68, 0.12);
-            border-radius: var(--radius);
-            padding: 32px;
-            transition: all 0.3s;
-        }
-
-        .problem-card:hover {
-            background: rgba(239, 68, 68, 0.08);
-            transform: translateY(-4px);
-        }
-
-        .problem-card .icon {
-            font-size: 2rem;
-            margin-bottom: 16px;
-        }
-
-        .problem-card h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .problem-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        /* ===== SOLUTION SECTION ===== */
-        .solution {
-            background: var(--bg-dark);
-        }
-
-        .solution-hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .solution-text .kicker {
+        .label {
             font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--accent);
-            letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 12px;
+            letter-spacing: 4px;
+            color: var(--accent-red);
+            font-weight: 800;
+            margin-bottom: 16px;
+            display: block;
         }
 
-        .solution-text h2 {
-            font-size: 2.4rem;
+        .title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 800;
-            letter-spacing: -1px;
+            letter-spacing: -2px;
             line-height: 1.1;
-            margin-bottom: 20px;
         }
 
-        .solution-text p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            line-height: 1.7;
-            margin-bottom: 24px;
-        }
-
-        .solution-points {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .solution-points li {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-        }
-
-        .solution-points li .check {
-            width: 22px;
-            height: 22px;
-            border-radius: 6px;
-            background: rgba(0, 255, 157, 0.1);
-            color: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        .solution-visual {
-            background: linear-gradient(135deg, rgba(0, 255, 157, 0.03), rgba(59, 130, 246, 0.03));
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .trust-eq {
-            font-family: 'Inter', monospace;
-            text-align: center;
-        }
-
-        .trust-eq .label {
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 16px;
-        }
-
-        .trust-eq .formula {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .trust-eq .var {
-            background: rgba(0, 255, 157, 0.08);
-            border: 1px solid rgba(0, 255, 157, 0.2);
-            padding: 8px 16px;
-            border-radius: 10px;
-            font-weight: 700;
-        }
-
-        .trust-eq .op {
-            color: var(--accent);
-            font-size: 1.4rem;
-        }
-
-        .chain-visual {
-            margin-top: 36px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .chain-block {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            animation: fadeInUp 0.6s ease both;
-        }
-
-        .chain-block:nth-child(2) {
-            animation-delay: 0.1s;
-        }
-
-        .chain-block:nth-child(3) {
-            animation-delay: 0.2s;
-        }
-
-        .chain-block .hash {
-            font-family: monospace;
-            color: var(--accent);
-            font-size: 0.7rem;
-            background: rgba(0, 255, 157, 0.05);
-            padding: 4px 8px;
-            border-radius: 6px;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(16px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ===== FEATURES ===== */
-        .features {
-            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-deep) 100%);
-        }
-
-        .features-grid {
+        /* ===== BENTO GRID ===== */
+        .bento-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(200px, auto);
+            gap: 24px;
         }
 
-        .feature-card {
+        .bento-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 32px;
-            transition: all 0.3s;
+            padding: 40px;
             position: relative;
             overflow: hidden;
+            transition: all 0.4s;
+            backdrop-filter: blur(10px);
         }
 
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .feature-card:hover {
+        .bento-card:hover {
+            border-color: rgba(225, 29, 72, 0.3);
             background: var(--bg-card-hover);
-            transform: translateY(-4px);
-            border-color: rgba(0, 255, 157, 0.15);
         }
 
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .bento-card h3 {
             font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
-
-        .feature-icon.green {
-            background: rgba(0, 255, 157, 0.1);
-        }
-
-        .feature-icon.blue {
-            background: rgba(59, 130, 246, 0.1);
-        }
-
-        .feature-icon.purple {
-            background: rgba(139, 92, 246, 0.1);
-        }
-
-        .feature-icon.cyan {
-            background: rgba(6, 182, 212, 0.1);
-        }
-
-        .feature-icon.orange {
-            background: rgba(245, 158, 11, 0.1);
-        }
-
-        .feature-icon.red {
-            background: rgba(239, 68, 68, 0.1);
-        }
-
-        .feature-card h3 {
-            font-size: 1.05rem;
+            margin: 16px 0 12px;
             font-weight: 700;
-            margin-bottom: 10px;
         }
 
-        .feature-card p {
+        .bento-card p {
             color: var(--text-muted);
-            font-size: 0.88rem;
-            line-height: 1.6;
+            font-size: 1rem;
         }
 
-        /* ===== EU SOVEREIGNTY ===== */
-        .sovereignty {
-            background: var(--bg-deep);
+        .card-lg {
+            grid-column: span 8;
         }
 
-        .sov-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+        .card-md {
+            grid-column: span 4;
         }
 
-        .sov-card {
-            text-align: center;
-            padding: 40px 28px;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.04), rgba(139, 92, 246, 0.04));
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            transition: all 0.3s;
-        }
-
-        .sov-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(59, 130, 246, 0.2);
-        }
-
-        .sov-card .flag {
-            font-size: 3rem;
-            margin-bottom: 16px;
-        }
-
-        .sov-card h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .sov-card p {
-            color: var(--text-muted);
-            font-size: 0.88rem;
-            line-height: 1.6;
-        }
-
-        /* ===== STATS ===== */
-        .stats {
-            background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-dark) 100%);
-            padding: 80px 20px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 32px;
-            text-align: center;
-        }
-
-        .stat-item .number {
-            font-size: 3rem;
-            font-weight: 900;
-            letter-spacing: -2px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .stat-item .label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 8px;
-            font-weight: 500;
-        }
-
-        /* ===== CTA ===== */
-        .cta {
-            background: var(--bg-dark);
-            padding: 100px 20px;
-        }
-
-        .cta-box {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(0, 255, 157, 0.04), rgba(59, 130, 246, 0.04));
-            border: 1px solid rgba(0, 255, 157, 0.12);
-            border-radius: 24px;
-            padding: 64px 48px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent 0%, rgba(0, 255, 157, 0.03) 25%, transparent 50%);
-            animation: ctaSpin 20s linear infinite;
-        }
-
-        @keyframes ctaSpin {
-            from {
-                transform: rotate(0);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .cta-box>* {
-            position: relative;
-            z-index: 1;
-        }
-
-        .cta-box h2 {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
-        }
-
-        .cta-box p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            margin-bottom: 36px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-actions {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cta-email {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: 24px;
+        .card-full {
+            grid-column: span 12;
         }
 
         /* ===== FOOTER ===== */
         footer {
-            padding: 48px 20px 32px;
-            text-align: center;
+            padding: 80px 20px 40px;
             border-top: 1px solid var(--border);
-            background: var(--bg-deep);
+            background: #010409;
         }
 
-        footer .logo {
-            font-size: 1.2rem;
-            font-weight: 800;
-            margin-bottom: 12px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 48px;
+            margin-bottom: 64px;
         }
 
-        footer p {
-            color: var(--text-dim);
-            font-size: 0.8rem;
-            line-height: 1.6;
+        .footer-logo img {
+            height: 40px;
+            margin-bottom: 24px;
         }
 
-        /* ===== SCROLL ANIMATIONS ===== */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .reveal.visible {
@@ -811,357 +342,156 @@
         }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 900px) {
-            .solution-hero {
-                grid-template-columns: 1fr;
-                gap: 40px;
+        @media (max-width: 1024px) {
+
+            .card-lg,
+            .card-md {
+                grid-column: span 12;
             }
 
-            .sov-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 24px;
+            .hero h1 {
+                font-size: 4rem;
             }
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 768px) {
             nav {
-                padding: 12px 20px;
+                top: 0;
+                width: 100%;
+                border-radius: 0;
+                border-x: 0;
             }
 
             .nav-links {
                 display: none;
             }
 
-            .mobile-menu {
-                display: block;
-            }
-
             .hero h1 {
-                font-size: 2.2rem;
-                letter-spacing: -1px;
+                font-size: 3.5rem;
             }
 
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .hero-buttons {
+            .hero-btns {
                 flex-direction: column;
-                align-items: center;
+                width: 100%;
+                max-width: 300px;
             }
 
-            .problem-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-box {
-                padding: 40px 24px;
+            .btn {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
 </head>
 
 <body>
+    <div class="bg-grid"></div>
 
     <!-- ===== NAVIGATION ===== -->
     <nav id="navbar">
-        <div class="nav-logo">◆ VIRTUALIS</div>
+        <a href="#" class="nav-logo">
+            <img src="logo.png" alt="Virtualis" class="nav-logo-img">
+        </a>
         <div class="nav-links">
-            <a href="#problem">Zašto NIS2</a>
-            <a href="#solution">Rješenje</a>
-            <a href="#features">Značajke</a>
-            <a href="#sovereignty">EU Suverenitet</a>
-            <a href="#contact" class="nav-cta">Kontaktirajte nas →</a>
+            <a href="#problem">Zakon</a>
+            <a href="#solution">SAIRE</a>
+            <a href="#features">Tehnologija</a>
+            <a href="#contact" class="nav-cta">Zatražite demo</a>
         </div>
-        <button class="mobile-menu" onclick="document.querySelector('.nav-links').classList.toggle('show')"
-            aria-label="Menu">☰</button>
     </nav>
 
     <!-- ===== HERO ===== -->
     <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge"><span class="pulse"></span> NIS2/ZKS usklađenost — Rok: 17. listopada 2024.</div>
-            <h1>Kibernetička sigurnost.<br><span class="gradient">Dokazana. Automatski.</span></h1>
-            <p>Jedina hrvatska platforma koja vašu NIS2/ZKS usklađenost pretvara iz dokumenata u <strong>kriptografski
-                    dokaziv sustav</strong> — s EU-suverenim AI-jem i neporecivim lancem dokaza.</p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn-primary">Zakažite demo ↗</a>
-                <a href="#solution" class="btn-secondary">Kako funkcionira →</a>
-            </div>
+        <div class="hero-glow"></div>
+        <div class="hero-badge">
+            <span style="font-size: 1.2rem; margin-right: 8px;">🔥</span>
+            NIS2/ZKS Compliance — Oct 2024
+        </div>
+        <h1 class="reveal">Deterministic<br>Compliance.</h1>
+        <p class="reveal">Pretvorite zakon iz rizika u prednost. Jedina platforma koja automatski gradi kriptografski
+            lanac dokaza za vašu NIS2 usklađenost.</p>
+        <div class="hero-btns reveal">
+            <a href="#contact" class="btn btn-main">SAIRE Platforma ↗</a>
+            <a href="#solution" class="btn btn-side">Kako funkcionira</a>
         </div>
     </section>
 
-    <!-- ===== PROBLEM ===== -->
-    <section class="problem" id="problem">
-        <div class="container">
-            <div class="section-label">⚠️ Problem</div>
-            <h2 class="section-title reveal">NIS2/ZKS usklađenost nije opcija.<br>To je zakon.</h2>
-            <p class="section-subtitle reveal">Zakon o kibernetičkoj sigurnosti (NN 14/2024) donosi stroge obveze za
-                hrvatske organizacije. Kazne su do <strong>10 milijuna eura</strong>.</p>
-            <div class="problem-grid">
-                <div class="problem-card reveal">
-                    <div class="icon">📋</div>
-                    <h3>Ručni Excel tablice</h3>
-                    <p>Većina organizacija još uvijek koristi Excel za praćenje usklađenosti. Nepouzdano, neauditabilno,
-                        i gotovo nemoguće održavati.</p>
-                </div>
-                <div class="problem-card reveal">
-                    <div class="icon">🔓</div>
-                    <h3>Nedostatak dokaza</h3>
-                    <p>Regulatori zahtijevaju neporecive dokaze o sigurnosnim kontrolama. Bez automatiziranog sustava,
-                        dokazi su fragmentirani ili nedostupni.</p>
-                </div>
-                <div class="problem-card reveal">
-                    <div class="icon">💰</div>
-                    <h3>Skupe Enterprise platforme</h3>
-                    <p>SAP GRC, ServiceNow — previsok trošak za hrvatske SME. A američki alati (Vanta, Drata) nemaju EU
-                        podatkovni suverenitet.</p>
-                </div>
+    <!-- ===== SECTIONS ===== -->
+    <section id="problem">
+        <div class="container text-center">
+            <div class="section-header">
+                <span class="label">Pravni okvir</span>
+                <h2 class="title reveal">ZKS (NN 14/2024)<br>nije izbor.</h2>
             </div>
-        </div>
-    </section>
-
-    <!-- ===== SOLUTION ===== -->
-    <section class="solution" id="solution">
-        <div class="container">
-            <div class="solution-hero reveal">
-                <div class="solution-text">
-                    <div class="kicker">Naše rješenje</div>
-                    <h2>SAIRE — Deterministička usklađenost</h2>
-                    <p>SAIRE (Security AI Risk & Evidence) pretvara vašu IT infrastrukturu u živi sustav dokaza. Umjesto
-                        da ispunjavate upitnike, SAIRE automatski prikuplja kriptografske dokaze iz vaših sustava.</p>
-                    <ul class="solution-points">
-                        <li><span class="check">✓</span><span>SHA-256 lanac dokaza — neporeciv, WORM arhitektura</span>
-                        </li>
-                        <li><span class="check">✓</span><span>14 automatskih kolektora (AD, Veeam, Wazuh,
-                                M365...)</span></li>
-                        <li><span class="check">✓</span><span>Nativno mapiranje na ZKS (NN 14/2024) i NIS2
-                                direktivu</span></li>
-                        <li><span class="check">✓</span><span>EU-suvereni AI temeljen na Mistral modelima</span></li>
-                        <li><span class="check">✓</span><span>Spremno za Big 4 reviziju (EY, KPMG, PwC, Deloitte)</span>
-                        </li>
-                    </ul>
+            <div class="bento-grid">
+                <div class="bento-card card-lg reveal">
+                    <span style="font-size: 2.5rem;">⚠️</span>
+                    <h3>Kritični rokovi</h3>
+                    <p>Subjekti moraju uskladiti svoje poslovanje s odredbama Zakona o kibernetičkoj sigurnosti do kraja
+                        godine. Kašnjenje donosi kazne do 10,000,000 EUR ili 2% ukupnog godišnjeg prometa.</p>
                 </div>
-                <div class="solution-visual">
-                    <div class="trust-eq">
-                        <div class="label">Jednadžba povjerenja</div>
-                        <div class="formula">
-                            <span class="var">📊 Podaci</span>
-                            <span class="op">×</span>
-                            <span class="var">🔗 Integritet</span>
-                            <span class="op">×</span>
-                            <span class="var">🧠 Kontekst</span>
-                        </div>
-                    </div>
-                    <div class="chain-visual">
-                        <div class="chain-block">
-                            <span>🔗</span>
-                            <span>Evidence #1347</span>
-                            <span class="hash">a3f8...c912</span>
-                            <span style="margin-left:auto;color:var(--accent)">✓ Verified</span>
-                        </div>
-                        <div class="chain-block">
-                            <span>🔗</span>
-                            <span>Evidence #1348</span>
-                            <span class="hash">b7d2...e44f</span>
-                            <span style="margin-left:auto;color:var(--accent)">✓ Verified</span>
-                        </div>
-                        <div class="chain-block">
-                            <span>🔗</span>
-                            <span>Evidence #1349</span>
-                            <span class="hash">f1e9...a881</span>
-                            <span style="margin-left:auto;color:var(--accent)">✓ Verified</span>
-                        </div>
+                <div class="bento-card card-md reveal">
+                    <span style="font-size: 2.5rem;">⚖️</span>
+                    <h3>Osobna odgovornost</h3>
+                    <p>Novi zakon prvi put uvodi izravnu odgovornost uprava i menadžmenta za sigurnosne propuste i
+                        nesukladnost.</p>
+                </div>
+                <div class="bento-card card-full reveal"
+                    style="background: linear-gradient(135deg, rgba(225,29,72,0.1), transparent);">
+                    <div style="max-width: 600px; margin: 0 auto;">
+                        <span style="font-size: 2.5rem;">🛡️</span>
+                        <h3>Od dokumenata do dokaza</h3>
+                        <p>Tradicionalni GRC se oslanja na papirnate upitnike. SAIRE se oslanja na podatke. Mi
+                            pretvaramo vaše logove, backupove i identitete u neporecive kriptografske dokaze spremne za
+                            reviziju.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- ===== FEATURES ===== -->
-    <section class="features" id="features">
-        <div class="container">
-            <div class="section-label">🔧 Značajke</div>
-            <h2 class="section-title reveal">Sve što vam treba za NIS2/ZKS</h2>
-            <p class="section-subtitle reveal">Od automatskog prikupljanja dokaza do AI analize — jedna platforma za
-                kompletnu kibernetičku usklađenost.</p>
-            <div class="features-grid">
-                <div class="feature-card reveal">
-                    <div class="feature-icon green">🔗</div>
-                    <h3>Lanac dokaza (Evidence Chain)</h3>
-                    <p>Neprekidni SHA-256 hash lanac koji kriptografski dokazuje da nijedan dokaz nije mijenjan nakon
-                        prikupljanja. WORM arhitektura.</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon blue">🤖</div>
-                    <h3>EU-Suvereni AI Asistent</h3>
-                    <p>ZKS pravni asistent temeljen na Mistral LLM modelu. Potpuno hostiran u EU (OVH Cloud). Zero US
-                        data exposure.</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon purple">📊</div>
-                    <h3>Real-time Dashboard</h3>
-                    <p>Živi prikaz stanja sigurnosti — SIEM alerte, backup status, identitetsku higijenu i procjenu
-                        rizika u jednom ekranu.</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon cyan">🛡️</div>
-                    <h3>SIEM Integracija (Wazuh)</h3>
-                    <p>Automatski prikuplja SCA rezultate, FIM alerte, syslog događaje i vulnerability skenove. Nativna
-                        API integracija.</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon orange">🔐</div>
-                    <h3>Upravljanje incidentima</h3>
-                    <p>Kompletni NIS2 Art. 23-24 lifecycle — od ranog upozorenja CSIRT-u do finalnog izvještaja. SLA
-                        praćenje u realnom vremenu.</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon red">🏢</div>
-                    <h3>Upravljanje dobavljačima</h3>
-                    <p>Registar dobavljača s automatskim sigurnosnim skeniranjem. 7-stupanjski External Security
-                        Intelligence scoring.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== EU SOVEREIGNTY ===== -->
-    <section class="sovereignty" id="sovereignty">
-        <div class="container">
-            <div class="section-label">🇪🇺 EU Suverenitet</div>
-            <h2 class="section-title reveal">Vaši podaci ostaju u Europi.<br>Garantirano.</h2>
-            <p class="section-subtitle reveal">SAIRE je jedina NIS2 platforma izgrađena od temelja za EU podatkovni
-                suverenitet — bez US Cloud Act rizika.</p>
-            <div class="sov-grid">
-                <div class="sov-card reveal">
-                    <div class="flag">🇫🇷</div>
-                    <h3>OVH Cloud hosting</h3>
-                    <p>Svi podaci hostirani na OVH infrastrukturi — francuska kompanija sa striktnom EU regulacijom.
-                        Nema US Cloud Act jurisdikcije.</p>
-                </div>
-                <div class="sov-card reveal">
-                    <div class="flag">🧠</div>
-                    <h3>Mistral AI modeli</h3>
-                    <p>EU-suvereni AI — Mistral Large 2 (123B parametara). Francuski LLM bez slanja podataka u SAD.
-                        bge-multilingual vektori za RAG.</p>
-                </div>
-                <div class="sov-card reveal">
-                    <div class="flag">🇭🇷</div>
-                    <h3>Hr. pravni okvir</h3>
-                    <p>Nativno mapiranje na ZKS (NN 14/2024), Hrvatski članci, CSIRT integracija. Nije generički
-                        globalni framework — već domaći zakon.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== STATS ===== -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item reveal">
-                    <div class="number" data-target="38">0</div>
-                    <div class="label">SUKS dokumenata</div>
-                </div>
-                <div class="stat-item reveal">
-                    <div class="number" data-target="14">0</div>
-                    <div class="label">Automatskih kolektora</div>
-                </div>
-                <div class="stat-item reveal">
-                    <div class="number" data-target="1348">0</div>
-                    <div class="label">Zapisa u lancu dokaza</div>
-                </div>
-                <div class="stat-item reveal">
-                    <div class="number" data-target="100">0</div>
-                    <div class="label">% EU Suverenitet</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== CTA ===== -->
-    <section class="cta" id="contact">
-        <div class="cta-box reveal">
-            <h2>Spremni za NIS2 usklađenost?</h2>
-            <p>Zakažite besplatnu konzultaciju i saznajte kako SAIRE može automatizirati vašu kibernetičku usklađenost —
-                u danima, ne mjesecima.</p>
-            <div class="cta-actions">
-                <a href="mailto:info@virtualis.hr" class="btn-primary">✉️ info@virtualis.hr</a>
-                <a href="tel:+385991234567" class="btn-secondary">📞 Nazovite nas</a>
-            </div>
-            <div class="cta-email">🏢 Virtualis d.o.o. — Zagreb, Hrvatska</div>
         </div>
     </section>
 
     <!-- ===== FOOTER ===== -->
     <footer>
-        <div class="logo">◆ VIRTUALIS</div>
-        <p>Virtualis d.o.o. | OIB: ___________ | Zagreb, Hrvatska</p>
-        <p style="margin-top:8px">© 2026 Virtualis. Sva prava pridržana. | EU-Suverena NIS2/ZKS platforma</p>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="Virtualis">
+                    <p>EU-suverena platforma za kibernetičku usklađenost i otpornost.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 16px;">Kontakt</h4>
+                    <p>info@virtualis.hr</p>
+                    <p>Zagreb, Hrvatska</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 16px;">Platforma</h4>
+                    <p>SAIRE Hub</p>
+                    <p>Evidence Chain</p>
+                    <p>ZKS Assistant</p>
+                </div>
+            </div>
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+                © 2026 Virtualis d.o.o. | Sva prava pridržana.
+            </p>
+        </div>
     </footer>
 
-    <!-- ===== SCRIPTS ===== -->
     <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
-        });
-
-        // Reveal on scroll (IntersectionObserver)
+        // Scroll reveal logic
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Counter animation
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const el = entry.target;
-                    const target = parseInt(el.dataset.target);
-                    let current = 0;
-                    const step = Math.ceil(target / 40);
-                    const timer = setInterval(() => {
-                        current += step;
-                        if (current >= target) { current = target; clearInterval(timer); }
-                        el.textContent = current.toLocaleString('hr-HR');
-                    }, 30);
-                    counterObserver.unobserve(el);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
-
-        // Mobile menu toggle styles
-        const style = document.createElement('style');
-        style.textContent = `
-            @media (max-width: 700px) {
-                .nav-links.show {
-                    display: flex !important; flex-direction: column;
-                    position: absolute; top: 100%; left: 0; right: 0;
-                    background: rgba(3,7,18,0.98); padding: 20px;
-                    border-bottom: 1px solid var(--border);
-                    gap: 16px;
-                }
-            }
-        `;
-        document.head.appendChild(style);
+        // Nav scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
     </script>
 </body>
 
