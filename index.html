@@ -5,16 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Virtualis d.o.o. — Hrvatska IT tvrtka specijalizirana za kibernetičku sigurnost, NIS2 usklađenost i digitalne inovacije.">
-    <meta name="keywords" content="Virtualis, IT tvrtka, kibernetička sigurnost, NIS2, ZKS, SAIRE, Hrvatska, Zagreb">
-    <title>Virtualis — IT Security & Innovation</title>
+        content="Virtualis d.o.o. — 16+ godina iskustva u IT sigurnosti, NIS2/ZKS usklađenosti i cloud rješenjima.">
+    <title>Virtualis — IT Security & Cloud Solutions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <style>
-        /* ===== RESET & VARIABLES ===== */
         *,
         *::before,
         *::after {
@@ -24,20 +22,18 @@
         }
 
         :root {
-            --bg-deep: #020617;
-            --bg-dark: #0f172a;
-            --bg-card: rgba(30, 41, 59, 0.5);
-            --bg-card-hover: rgba(51, 65, 85, 0.6);
-            --accent-red: #e11d48;
-            --accent-red-glow: rgba(225, 29, 72, 0.15);
-            --accent-cyan: #06b6d4;
-            --accent-emerald: #10b981;
-            --text: #f8fafc;
-            --text-muted: #94a3b8;
-            --text-dim: #64748b;
-            --border: rgba(255, 255, 255, 0.08);
-            --glass: rgba(15, 23, 42, 0.8);
-            --radius: 20px;
+            --bg: #06080f;
+            --bg-2: #0c1322;
+            --accent: #e11d48;
+            --accent-glow: rgba(225, 29, 72, 0.15);
+            --cyan: #22d3ee;
+            --emerald: #34d399;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --dim: #475569;
+            --border: rgba(255, 255, 255, 0.06);
+            --glass: rgba(12, 19, 34, 0.85);
+            --r: 20px;
         }
 
         html {
@@ -45,8 +41,8 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--bg-deep);
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
@@ -54,99 +50,133 @@
 
         h1,
         h2,
-        h3 {
+        h3,
+        h4 {
             font-family: 'Outfit', sans-serif;
         }
 
         a {
             text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: inherit;
+            transition: all 0.3s;
         }
 
-        /* ===== BACKGROUND ===== */
+        img {
+            max-width: 100%;
+        }
+
+        /* Grid bg */
         .bg-grid {
             position: fixed;
             inset: 0;
-            background-image:
-                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 80px 80px;
-            mask-image: radial-gradient(circle at center, black, transparent 80%);
-            z-index: -1;
+            z-index: -2;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 64px 64px;
+            mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 70%);
         }
 
-        /* ===== NAVIGATION ===== */
+        /* Ambient glow */
+        .ambient {
+            position: fixed;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .ambient-1 {
+            width: 900px;
+            height: 900px;
+            top: -300px;
+            left: -200px;
+            background: radial-gradient(circle, rgba(225, 29, 72, 0.06), transparent 60%);
+            filter: blur(100px);
+        }
+
+        .ambient-2 {
+            width: 700px;
+            height: 700px;
+            bottom: -200px;
+            right: -200px;
+            background: radial-gradient(circle, rgba(34, 211, 238, 0.04), transparent 60%);
+            filter: blur(100px);
+        }
+
+        /* === Nav === */
         nav {
             position: fixed;
-            top: 24px;
+            top: 16px;
             left: 50%;
             transform: translateX(-50%);
-            width: 90%;
-            max-width: 1100px;
-            z-index: 1000;
-            padding: 12px 32px;
+            width: 92%;
+            max-width: 1140px;
+            z-index: 100;
+            padding: 10px 28px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             background: var(--glass);
-            backdrop-filter: blur(20px) saturate(180%);
+            backdrop-filter: blur(24px) saturate(180%);
             border: 1px solid var(--border);
-            border-radius: 100px;
+            border-radius: 60px;
             transition: all 0.4s;
         }
 
         nav.scrolled {
-            top: 12px;
-            width: 95%;
-            padding: 10px 24px;
+            top: 8px;
+            padding: 8px 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
 
-        .nav-logo-img {
-            height: 36px;
-            border-radius: 6px;
+        .nav-logo {
+            height: 34px;
+            transition: transform 0.3s;
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.05);
         }
 
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 28px;
             align-items: center;
         }
 
         .nav-links a {
-            color: var(--text-muted);
-            font-size: 0.95rem;
+            color: var(--muted);
+            font-size: 0.9rem;
             font-weight: 500;
         }
 
         .nav-links a:hover {
-            color: var(--text);
+            color: #fff;
         }
 
         .nav-cta {
-            background: var(--accent-red);
-            color: white;
+            background: var(--accent);
+            color: #fff !important;
             padding: 10px 24px;
-            border-radius: 100px;
+            border-radius: 60px;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
         }
 
         .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(225, 29, 72, 0.3);
-            color: white;
+            box-shadow: 0 0 24px rgba(225, 29, 72, 0.4);
+            transform: translateY(-1px);
         }
 
-        .mobile-menu {
+        .mobile-toggle {
             display: none;
-            cursor: pointer;
             background: none;
             border: none;
-            color: var(--text);
+            color: #fff;
             font-size: 1.5rem;
+            cursor: pointer;
         }
 
-        /* ===== HERO ===== */
+        /* === Hero === */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -154,83 +184,142 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 140px 20px 80px;
+            padding: 160px 20px 100px;
             position: relative;
         }
 
-        .hero-glow {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(225, 29, 72, 0.08), transparent 70%);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: -1;
-            filter: blur(80px);
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(225, 29, 72, 0.08);
+            border: 1px solid rgba(225, 29, 72, 0.2);
+            border-radius: 60px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 32px;
+            animation: fadeUp 0.8s ease;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-size: clamp(3.2rem, 8vw, 6rem);
             font-weight: 900;
             letter-spacing: -3px;
-            line-height: 0.95;
-            margin-bottom: 28px;
-            background: linear-gradient(to bottom, #fff 40%, rgba(255, 255, 255, 0.6));
+            line-height: 0.92;
+            margin-bottom: 24px;
+            animation: fadeUp 0.8s ease 0.1s both;
+        }
+
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.5) 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
+        .hero h1 .accent {
+            color: var(--accent);
+            -webkit-text-fill-color: var(--accent);
+        }
+
         .hero p {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            max-width: 650px;
-            margin: 0 auto 48px;
-            line-height: 1.7;
+            font-size: 1.15rem;
+            color: var(--muted);
+            max-width: 560px;
+            margin: 0 auto 44px;
+            line-height: 1.75;
+            animation: fadeUp 0.8s ease 0.2s both;
         }
 
         .hero-btns {
             display: flex;
-            gap: 20px;
-            justify-content: center;
+            gap: 16px;
+            animation: fadeUp 0.8s ease 0.3s both;
         }
 
         .btn {
-            padding: 18px 40px;
-            border-radius: 100px;
-            font-size: 1.05rem;
+            padding: 16px 36px;
+            border-radius: 60px;
+            font-size: 0.95rem;
             font-weight: 700;
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             cursor: pointer;
+            border: none;
         }
 
-        .btn-main {
-            background: var(--accent-red);
-            color: white;
-            box-shadow: 0 0 30px rgba(225, 29, 72, 0.25);
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 4px 24px rgba(225, 29, 72, 0.3);
         }
 
-        .btn-main:hover {
-            color: white;
-            transform: scale(1.05);
-            box-shadow: 0 0 50px rgba(225, 29, 72, 0.35);
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 40px rgba(225, 29, 72, 0.4);
         }
 
-        .btn-side {
-            background: rgba(255, 255, 255, 0.05);
+        .btn-ghost {
+            background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--border);
-            color: white;
-            backdrop-filter: blur(10px);
+            color: #fff;
+            backdrop-filter: blur(8px);
         }
 
-        .btn-side:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.12);
         }
 
-        /* ===== SECTIONS ===== */
+        /* === Ticker === */
+        .ticker {
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .ticker-track {
+            display: inline-flex;
+            gap: 48px;
+            animation: scroll 30s linear infinite;
+        }
+
+        .ticker-item {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dim);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .ticker-item::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* === Sections === */
         section {
             padding: 120px 20px;
         }
@@ -240,319 +329,359 @@
             margin: 0 auto;
         }
 
-        .label {
-            font-size: 0.8rem;
+        .section-label {
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 4px;
-            color: var(--accent-red);
+            color: var(--accent);
             font-weight: 800;
-            margin-bottom: 16px;
-            display: block;
+            margin-bottom: 12px;
         }
 
-        .title {
-            font-size: clamp(2.2rem, 5vw, 3.5rem);
+        .section-title {
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
             font-weight: 800;
-            letter-spacing: -2px;
+            letter-spacing: -1.5px;
             line-height: 1.1;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
-        .subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 600px;
+        .section-sub {
+            font-size: 1.05rem;
+            color: var(--muted);
+            max-width: 550px;
             line-height: 1.7;
             margin-bottom: 48px;
         }
 
-        /* ===== ABOUT ===== */
+        /* === About === */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 80px;
             align-items: center;
         }
 
         .about-text p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
+            color: var(--muted);
+            font-size: 1rem;
             line-height: 1.8;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
+        .about-highlight {
+            display: flex;
+            gap: 32px;
+            margin-top: 32px;
         }
 
-        .stat-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 32px;
+        .about-num {
             text-align: center;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s;
         }
 
-        .stat-card:hover {
-            border-color: rgba(225, 29, 72, 0.3);
-        }
-
-        .stat-card .number {
-            font-family: 'Outfit', sans-serif;
-            font-size: 2.5rem;
+        .about-num .big {
+            font-family: 'Outfit';
+            font-size: 2.2rem;
             font-weight: 900;
-            background: linear-gradient(135deg, var(--accent-red), var(--accent-cyan));
+            background: linear-gradient(135deg, var(--accent), var(--cyan));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .stat-card .stat-label {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: 8px;
-        }
-
-        /* ===== SERVICES ===== */
-        .services {
-            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-deep) 100%);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .service-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 40px;
-            transition: all 0.4s;
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-red), var(--accent-cyan));
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .service-card:hover {
-            border-color: rgba(225, 29, 72, 0.2);
-            transform: translateY(-6px);
-        }
-
-        .service-card:hover::before {
-            opacity: 1;
-        }
-
-        .service-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .service-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-
-        .service-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* ===== PRODUCT (SAIRE) ===== */
-        .product {
-            position: relative;
-        }
-
-        .product-box {
-            background: linear-gradient(135deg, rgba(225, 29, 72, 0.06), rgba(6, 182, 212, 0.04));
-            border: 1px solid rgba(225, 29, 72, 0.15);
-            border-radius: 28px;
-            padding: 80px 60px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .product-info .product-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 16px;
-            background: var(--accent-red-glow);
-            border: 1px solid rgba(225, 29, 72, 0.25);
-            border-radius: 100px;
+        .about-num .small {
             font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--accent-red);
-            margin-bottom: 20px;
+            color: var(--dim);
+            margin-top: 4px;
         }
 
-        .product-info h2 {
-            font-size: 2.8rem;
-            font-weight: 900;
-            letter-spacing: -2px;
-            margin-bottom: 20px;
-            line-height: 1.05;
-        }
-
-        .product-info p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            line-height: 1.7;
-            margin-bottom: 32px;
-        }
-
-        .product-features {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .product-features li {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .product-features li .dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent-red);
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        .product-visual {
+        .about-visual {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 16px;
         }
 
-        .pv-card {
-            background: rgba(255, 255, 255, 0.03);
+        .av-card {
+            background: var(--bg-2);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 28px;
+            border-radius: var(--r);
+            padding: 32px 24px;
             text-align: center;
+            transition: all 0.3s;
         }
 
-        .pv-card .pv-icon {
+        .av-card:hover {
+            border-color: rgba(225, 29, 72, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .av-card .ico {
             font-size: 2rem;
             margin-bottom: 12px;
         }
 
-        .pv-card h4 {
+        .av-card h4 {
             font-size: 0.95rem;
             font-weight: 700;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
-        .pv-card p {
-            font-size: 0.8rem;
-            color: var(--text-dim);
+        .av-card p {
+            font-size: 0.78rem;
+            color: var(--dim);
         }
 
-        /* ===== CTA ===== */
-        .cta {
-            padding: 120px 20px;
+        /* === Services === */
+        .services-section {
+            background: linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 100%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .svc {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 36px 28px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .svc::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--cyan));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .svc:hover {
+            border-color: rgba(225, 29, 72, 0.15);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .svc:hover::after {
+            opacity: 1;
+        }
+
+        .svc-ico {
+            font-size: 2.2rem;
+            margin-bottom: 16px;
+        }
+
+        .svc h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .svc p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* === Product === */
+        .product-section {
+            position: relative;
+        }
+
+        .product-wrapper {
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.04), rgba(34, 211, 238, 0.03));
+            border: 1px solid rgba(225, 29, 72, 0.1);
+            border-radius: 28px;
+            padding: 72px 56px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 56px;
+            align-items: center;
+        }
+
+        .prod-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: var(--accent-glow);
+            border: 1px solid rgba(225, 29, 72, 0.25);
+            border-radius: 60px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .prod-title {
+            font-size: 2.6rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 16px;
+            line-height: 1.05;
+        }
+
+        .prod-desc {
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .prod-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .prod-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .prod-features li .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .prod-visual {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .pv {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px 18px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .pv:hover {
+            border-color: rgba(225, 29, 72, 0.15);
+        }
+
+        .pv .pv-ico {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .pv h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .pv p {
+            font-size: 0.72rem;
+            color: var(--dim);
+        }
+
+        /* === CTA === */
+        .cta-section {
+            padding: 100px 20px;
         }
 
         .cta-box {
-            max-width: 800px;
+            max-width: 720px;
             margin: 0 auto;
             text-align: center;
-            background: linear-gradient(135deg, rgba(225, 29, 72, 0.06), rgba(6, 182, 212, 0.04));
-            border: 1px solid rgba(225, 29, 72, 0.15);
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.05), rgba(34, 211, 238, 0.03));
+            border: 1px solid rgba(225, 29, 72, 0.12);
             border-radius: 28px;
-            padding: 80px 48px;
-            position: relative;
-            overflow: hidden;
+            padding: 72px 48px;
         }
 
         .cta-box h2 {
             font-size: 2.5rem;
             font-weight: 800;
-            margin-bottom: 16px;
             letter-spacing: -1px;
+            margin-bottom: 12px;
         }
 
         .cta-box p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-            max-width: 500px;
+            color: var(--muted);
+            font-size: 1.05rem;
+            margin-bottom: 36px;
+            max-width: 440px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .cta-actions {
             display: flex;
-            gap: 16px;
+            gap: 14px;
             justify-content: center;
             flex-wrap: wrap;
         }
 
-        .cta-email {
+        .cta-meta {
             display: block;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            margin-top: 28px;
+            color: var(--dim);
+            font-size: 0.85rem;
+            margin-top: 24px;
         }
 
-        /* ===== FOOTER ===== */
+        /* === Footer === */
         footer {
-            padding: 80px 20px 40px;
+            padding: 64px 20px 32px;
             border-top: 1px solid var(--border);
-            background: #010409;
+            background: #030509;
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 48px;
-            margin-bottom: 64px;
+            gap: 40px;
+            margin-bottom: 48px;
         }
 
-        .footer-logo img {
-            height: 44px;
-            margin-bottom: 16px;
-            border-radius: 6px;
+        .footer-brand img {
+            height: 38px;
+            margin-bottom: 8px;
         }
 
-        .footer-logo p {
-            color: var(--text-dim);
-            font-size: 0.9rem;
+        .footer-brand .tagline {
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p {
+            color: var(--dim);
+            font-size: 0.85rem;
             line-height: 1.6;
         }
 
         footer h4 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.9rem;
+            font-family: 'Outfit';
+            font-size: 0.82rem;
             font-weight: 700;
-            margin-bottom: 16px;
-            color: var(--text);
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         footer ul {
@@ -560,13 +689,13 @@
         }
 
         footer ul li {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         footer ul li a,
         footer ul li span {
-            color: var(--text-dim);
-            font-size: 0.88rem;
+            color: var(--dim);
+            font-size: 0.85rem;
         }
 
         footer ul li a:hover {
@@ -575,17 +704,17 @@
 
         .footer-bottom {
             text-align: center;
-            color: var(--text-dim);
-            font-size: 0.82rem;
-            padding-top: 32px;
+            color: var(--dim);
+            font-size: 0.78rem;
+            padding-top: 24px;
             border-top: 1px solid var(--border);
         }
 
-        /* ===== ANIMATIONS ===== */
+        /* === Animations === */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(24px);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .reveal.visible {
@@ -593,17 +722,29 @@
             transform: translateY(0);
         }
 
-        /* ===== RESPONSIVE ===== */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* === Responsive === */
         @media (max-width: 1024px) {
 
             .about-grid,
-            .product-box {
+            .product-wrapper {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
 
             .services-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
             }
 
             .footer-grid {
@@ -613,8 +754,8 @@
 
         @media (max-width: 768px) {
             nav {
-                top: 0;
                 width: 100%;
+                top: 0;
                 border-radius: 0;
             }
 
@@ -622,7 +763,7 @@
                 display: none;
             }
 
-            .nav-links.show {
+            .nav-links.open {
                 display: flex;
                 flex-direction: column;
                 position: absolute;
@@ -630,24 +771,24 @@
                 left: 0;
                 right: 0;
                 background: var(--glass);
-                backdrop-filter: blur(20px);
+                backdrop-filter: blur(24px);
                 padding: 20px;
                 border-bottom: 1px solid var(--border);
-                gap: 16px;
             }
 
-            .mobile-menu {
+            .mobile-toggle {
                 display: block;
             }
 
             .hero h1 {
-                font-size: 3rem;
+                font-size: 2.8rem;
+                letter-spacing: -1.5px;
             }
 
             .hero-btns {
                 flex-direction: column;
                 width: 100%;
-                max-width: 300px;
+                max-width: 280px;
             }
 
             .btn {
@@ -655,20 +796,21 @@
                 justify-content: center;
             }
 
-            .about-stats {
-                grid-template-columns: 1fr 1fr;
+            .services-grid {
+                grid-template-columns: 1fr;
             }
 
-            .product-box {
-                padding: 40px 24px;
+            .about-highlight {
+                flex-wrap: wrap;
+                gap: 20px;
             }
 
-            .product-visual {
-                grid-template-columns: 1fr 1fr;
+            .product-wrapper {
+                padding: 36px 20px;
             }
 
             .cta-box {
-                padding: 48px 24px;
+                padding: 48px 20px;
             }
 
             .footer-grid {
@@ -680,183 +822,227 @@
 
 <body>
     <div class="bg-grid"></div>
+    <div class="ambient ambient-1"></div>
+    <div class="ambient ambient-2"></div>
 
-    <!-- ===== NAVIGATION ===== -->
+    <!-- NAV -->
     <nav id="navbar">
-        <a href="#">
-            <img src="logo.png" alt="Virtualis" class="nav-logo-img">
-        </a>
+        <a href="#"><img src="logo.png" alt="Virtualis" class="nav-logo"></a>
         <div class="nav-links" id="navLinks">
             <a href="#about">O nama</a>
             <a href="#services">Usluge</a>
             <a href="#product">SAIRE</a>
             <a href="#contact" class="nav-cta">Kontakt</a>
         </div>
-        <button class="mobile-menu" onclick="document.getElementById('navLinks').classList.toggle('show')"
+        <button class="mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')"
             aria-label="Menu">☰</button>
     </nav>
 
-    <!-- ===== HERO ===== -->
+    <!-- HERO -->
     <section class="hero">
-        <div class="hero-glow"></div>
-        <h1 class="reveal">Sigurnost.<br>Inovacija.<br>Rezultati.</h1>
-        <p class="reveal">Virtualis je hrvatska IT tvrtka specijalizirana za kibernetičku sigurnost, NIS2/ZKS
-            usklađenost i razvoj inovativnih softverskih rješenja za zaštitu poslovanja.</p>
-        <div class="hero-btns reveal">
-            <a href="#contact" class="btn btn-main">Kontaktirajte nas ↗</a>
-            <a href="#services" class="btn btn-side">Naše usluge</a>
+        <div class="hero-badge">⚡ 16+ godina u IT sigurnosti</div>
+        <h1><span class="gradient">Sigurnost koju<br>možete</span> <span class="accent">dokazati.</span></h1>
+        <p>Virtualis d.o.o. — hrvatska IT tvrtka specijalizirana za kibernetičku sigurnost, NIS2/ZKS usklađenost i
+            razvoj inovativnih cloud rješenja.</p>
+        <div class="hero-btns">
+            <a href="#contact" class="btn btn-primary">Kontaktirajte nas →</a>
+            <a href="#services" class="btn btn-ghost">Istražite usluge</a>
         </div>
     </section>
 
-    <!-- ===== O NAMA ===== -->
+    <!-- TICKER -->
+    <div class="ticker">
+        <div class="ticker-track">
+            <span class="ticker-item">NIS2 Directive</span>
+            <span class="ticker-item">ZKS NN 14/2024</span>
+            <span class="ticker-item">GDPR</span>
+            <span class="ticker-item">ISO 27001</span>
+            <span class="ticker-item">Penetration Testing</span>
+            <span class="ticker-item">SIEM / Wazuh</span>
+            <span class="ticker-item">Active Directory</span>
+            <span class="ticker-item">Microsoft 365</span>
+            <span class="ticker-item">Evidence Chain</span>
+            <span class="ticker-item">Cloud Migration</span>
+            <span class="ticker-item">NIS2 Directive</span>
+            <span class="ticker-item">ZKS NN 14/2024</span>
+            <span class="ticker-item">GDPR</span>
+            <span class="ticker-item">ISO 27001</span>
+            <span class="ticker-item">Penetration Testing</span>
+            <span class="ticker-item">SIEM / Wazuh</span>
+            <span class="ticker-item">Active Directory</span>
+            <span class="ticker-item">Microsoft 365</span>
+            <span class="ticker-item">Evidence Chain</span>
+            <span class="ticker-item">Cloud Migration</span>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
     <section id="about">
         <div class="container">
             <div class="about-grid">
                 <div class="about-text reveal">
-                    <span class="label">O nama</span>
-                    <h2 class="title">Virtualis d.o.o.</h2>
-                    <p>Virtualis je tvrtka s više od 16 godina iskustva u IT industriji, sa sjedištem u Zagrebu.
-                        Specijalizirani smo za informacijsku sigurnost, infrastrukturne IT usluge i razvoj
-                        vlastitih softverskih proizvoda.</p>
-                    <p>Naša misija je omogućiti hrvatskim organizacijama da zadovolje stroge zahtjeve EU regulacija
-                        (NIS2, GDPR, ZKS) kroz automatizaciju, inovaciju i stručnu podršku — bez oslanjanja na
-                        skupe globalne platforme.</p>
+                    <span class="section-label">O nama</span>
+                    <h2 class="section-title">Virtualis d.o.o.</h2>
+                    <p>S više od 16 godina iskustva u IT industriji, Virtualis je jedna od rijetkih hrvatskih tvrtki
+                        koja spaja duboku tehničku ekspertizu s regulatornim razumijevanjem.</p>
+                    <p>Naša misija je jasna — omogućiti organizacijama da zadovolje najstrože zahtjeve EU regulacija
+                        kroz automatizaciju i inovaciju, bez oslanjanja na skupe globalne platforme.</p>
+                    <div class="about-highlight">
+                        <div class="about-num">
+                            <div class="big">16+</div>
+                            <div class="small">Godina iskustva</div>
+                        </div>
+                        <div class="about-num">
+                            <div class="big">NIS2</div>
+                            <div class="small">EU Usklađenost</div>
+                        </div>
+                        <div class="about-num">
+                            <div class="big">ZKS</div>
+                            <div class="small">Hrvatski zakon</div>
+                        </div>
+                        <div class="about-num">
+                            <div class="big">24/7</div>
+                            <div class="small">Podrška</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="about-stats reveal">
-                    <div class="stat-card">
-                        <div class="number">NIS2</div>
-                        <div class="stat-label">EU Compliance</div>
+                <div class="about-visual reveal">
+                    <div class="av-card">
+                        <div class="ico">🛡️</div>
+                        <h4>Sigurnost</h4>
+                        <p>Proaktivna zaštita</p>
                     </div>
-                    <div class="stat-card">
-                        <div class="number">ZKS</div>
-                        <div class="stat-label">Hrvatski zakon</div>
+                    <div class="av-card">
+                        <div class="ico">📋</div>
+                        <h4>Usklađenost</h4>
+                        <p>NIS2, ZKS, GDPR</p>
                     </div>
-                    <div class="stat-card">
-                        <div class="number">100%</div>
-                        <div class="stat-label">EU Suverenitet</div>
+                    <div class="av-card">
+                        <div class="ico">☁️</div>
+                        <h4>Cloud</h4>
+                        <p>M365 & Azure</p>
                     </div>
-                    <div class="stat-card">
-                        <div class="number">24/7</div>
-                        <div class="stat-label">Podrška</div>
+                    <div class="av-card">
+                        <div class="ico">🔧</div>
+                        <h4>Infrastruktura</h4>
+                        <p>Dizajn & Upravljanje</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== USLUGE ===== -->
-    <section class="services" id="services">
+    <!-- SERVICES -->
+    <section class="services-section" id="services">
         <div class="container">
-            <span class="label">Što radimo</span>
-            <h2 class="title reveal">Naše usluge</h2>
-            <p class="subtitle reveal">Od savjetovanja do implementacije — pokrivamo cijeli spektar IT sigurnosti i
-                usklađenosti.</p>
+            <span class="section-label">Što radimo</span>
+            <h2 class="section-title reveal">Naše usluge</h2>
+            <p class="section-sub reveal">Od strategije do implementacije — pokrivamo cijeli spektar IT sigurnosti.</p>
             <div class="services-grid">
-                <div class="service-card reveal">
-                    <div class="icon">🛡️</div>
+                <div class="svc reveal">
+                    <div class="svc-ico">🛡️</div>
                     <h3>Kibernetička sigurnost</h3>
-                    <p>Procjena rizika, penetration testing, SIEM implementacija (Wazuh), endpoint zaštita i
-                        sigurnosni nadzor infrastrukture.</p>
+                    <p>Procjena rizika, penetration testing, SIEM (Wazuh), endpoint zaštita i 24/7 sigurnosni nadzor.
+                    </p>
                 </div>
-                <div class="service-card reveal">
-                    <div class="icon">📋</div>
+                <div class="svc reveal">
+                    <div class="svc-ico">📋</div>
                     <h3>NIS2/ZKS usklađenost</h3>
                     <p>Kompletna priprema za Zakon o kibernetičkoj sigurnosti — politike, procedure, tehnička
-                        implementacija i priprema za reviziju.</p>
+                        implementacija.</p>
                 </div>
-                <div class="service-card reveal">
-                    <div class="icon">🏗️</div>
+                <div class="svc reveal">
+                    <div class="svc-ico">🏗️</div>
                     <h3>IT infrastruktura</h3>
-                    <p>Projektiranje, implementacija i održavanje serverske i mrežne infrastrukture — virtualizacija,
-                        backup, Active Directory, VPN.</p>
+                    <p>Projektiranje i održavanje serverske i mrežne infrastrukture — virtualizacija, backup, AD, VPN.
+                    </p>
                 </div>
-                <div class="service-card reveal">
-                    <div class="icon">💻</div>
+                <div class="svc reveal">
+                    <div class="svc-ico">💻</div>
                     <h3>Razvoj softvera</h3>
-                    <p>Razvoj prilagođenih web aplikacija i internih alata za automatizaciju poslovnih procesa i
-                        sigurnosnih operacija.</p>
+                    <p>Prilagođene web aplikacije i interni alati za automatizaciju poslovnih i sigurnosnih procesa.</p>
                 </div>
-                <div class="service-card reveal">
-                    <div class="icon">☁️</div>
+                <div class="svc reveal">
+                    <div class="svc-ico">☁️</div>
                     <h3>Cloud & Microsoft 365</h3>
-                    <p>Migracija, konfiguracija i sigurnosno očvršćivanje Microsoft 365, Azure AD/Entra ID i
-                        hibridnih cloud okruženja.</p>
+                    <p>Migracija, konfiguracija i sigurnosno očvršćivanje M365, Azure AD/Entra ID i hibridnih okruženja.
+                    </p>
                 </div>
-                <div class="service-card reveal">
-                    <div class="icon">📊</div>
+                <div class="svc reveal">
+                    <div class="svc-ico">📊</div>
                     <h3>GRC savjetovanje</h3>
-                    <p>Governance, Risk & Compliance — upravljanje rizicima, interne revizije, gap analize i
-                        strategija usklađenosti.</p>
+                    <p>Governance, Risk & Compliance — upravljanje rizicima, interne revizije, gap analize.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== PROIZVOD (SAIRE) ===== -->
-    <section class="product" id="product">
+    <!-- PRODUCT -->
+    <section class="product-section" id="product">
         <div class="container">
-            <div class="product-box reveal">
-                <div class="product-info">
-                    <div class="product-badge">🔥 Vlastiti proizvod</div>
-                    <h2>SAIRE<br>Platforma</h2>
-                    <p>Naš flagship proizvod — SAIRE (Security AI Risk & Evidence) je platforma za deterministički
-                        NIS2 compliance. Automatski prikuplja kriptografske dokaze iz vaše infrastrukture i gradi
-                        neporeciv lanac usklađenosti.</p>
-                    <ul class="product-features">
-                        <li><span class="dot"></span> SHA-256 Evidence Chain (WORM arhitektura)</li>
-                        <li><span class="dot"></span> 14 automatskih kolektora (AD, Veeam, Wazuh, M365...)</li>
-                        <li><span class="dot"></span> EU-suvereni AI asistent (Mistral LLM)</li>
-                        <li><span class="dot"></span> Nativno mapiranje na ZKS (NN 14/2024)</li>
-                        <li><span class="dot"></span> Spremno za Big 4 reviziju</li>
+            <div class="product-wrapper reveal">
+                <div>
+                    <div class="prod-badge">🔥 Flagship proizvod</div>
+                    <h2 class="prod-title">SAIRE<br>Platforma</h2>
+                    <p class="prod-desc">Security AI Risk & Evidence — platforma za deterministički NIS2 compliance.
+                        Automatski prikuplja kriptografske dokaze i gradi neporeciv lanac usklađenosti.</p>
+                    <ul class="prod-features">
+                        <li><span class="dot"></span>SHA-256 Evidence Chain (WORM)</li>
+                        <li><span class="dot"></span>14 automatskih kolektora</li>
+                        <li><span class="dot"></span>EU-suvereni AI asistent (Mistral)</li>
+                        <li><span class="dot"></span>Nativno mapiranje na ZKS</li>
+                        <li><span class="dot"></span>Spremno za Big 4 reviziju</li>
                     </ul>
+                    <a href="#contact" class="btn btn-primary" style="display:inline-flex;">Zatražite demo →</a>
                 </div>
-                <div class="product-visual">
-                    <div class="pv-card">
-                        <div class="pv-icon">🔗</div>
+                <div class="prod-visual">
+                    <div class="pv">
+                        <div class="pv-ico">🔗</div>
                         <h4>Evidence Chain</h4>
-                        <p>Kriptografski lanac dokaza</p>
+                        <p>Kriptografski lanac</p>
                     </div>
-                    <div class="pv-card">
-                        <div class="pv-icon">🤖</div>
+                    <div class="pv">
+                        <div class="pv-ico">🤖</div>
                         <h4>AI Asistent</h4>
                         <p>ZKS pravni savjetnik</p>
                     </div>
-                    <div class="pv-card">
-                        <div class="pv-icon">📊</div>
+                    <div class="pv">
+                        <div class="pv-ico">📊</div>
                         <h4>Dashboard</h4>
-                        <p>Real-time sigurnosni pregled</p>
+                        <p>Real-time pregled</p>
                     </div>
-                    <div class="pv-card">
-                        <div class="pv-icon">🏢</div>
+                    <div class="pv">
+                        <div class="pv-ico">🏢</div>
                         <h4>TPRM</h4>
-                        <p>Upravljanje dobavljačima</p>
+                        <p>Dobavljački rizici</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== CTA ===== -->
-    <section class="cta" id="contact">
+    <!-- CTA -->
+    <section class="cta-section" id="contact">
         <div class="cta-box reveal">
             <h2>Razgovarajmo.</h2>
-            <p>Bez obzira trebate li sigurnosnu procjenu, NIS2 usklađenost ili IT infrastrukturu — tu smo za vas.
-            </p>
+            <p>Trebate sigurnosnu procjenu, NIS2 usklađenost ili IT infrastrukturu? Tu smo za vas.</p>
             <div class="cta-actions">
-                <a href="mailto:info@virtualis.hr" class="btn btn-main">✉️ info@virtualis.hr</a>
-                <a href="tel:+38514929222" class="btn btn-side">📞 Nazovite nas</a>
+                <a href="mailto:info@virtualis.hr" class="btn btn-primary">✉️ info@virtualis.hr</a>
+                <a href="tel:+38514929222" class="btn btn-ghost">📞 Nazovite nas</a>
             </div>
-            <span class="cta-email">🏢 Virtualis d.o.o. — Zagreb, Hrvatska</span>
+            <span class="cta-meta">🏢 Virtualis d.o.o. — Zagreb, Hrvatska</span>
         </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-logo">
+                <div class="footer-brand">
                     <img src="logo.png" alt="Virtualis">
-                    <p>Hrvatska IT tvrtka specijalizirana za sigurnost, usklađenost i digitalne inovacije.</p>
+                    <div class="tagline">Cloud Solutions</div>
+                    <p>Hrvatska IT tvrtka s 16+ godina iskustva u sigurnosti, usklađenosti i digitalnoj transformaciji.
+                    </p>
                 </div>
                 <div>
                     <h4>Usluge</h4>
@@ -883,37 +1069,15 @@
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                © 2026 Virtualis d.o.o. | OIB: ___________ | Sva prava pridržana.
-            </div>
+            <div class="footer-bottom">© 2026 Virtualis d.o.o. | Sva prava pridržana.</div>
         </div>
     </footer>
 
-    <!-- ===== SCRIPTS ===== -->
     <script>
-        // Navbar scroll
-        window.addEventListener('scroll', () => {
-            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-        });
-
-        // Reveal on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Close mobile menu on link click
-        document.querySelectorAll('.nav-links a').forEach(a => {
-            a.addEventListener('click', () => {
-                document.getElementById('navLinks').classList.remove('show');
-            });
-        });
+        window.addEventListener('scroll', () => document.getElementById('navbar').classList.toggle('scrolled', scrollY > 50));
+        const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+        document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
     </script>
 </body>
 
