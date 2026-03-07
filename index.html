@@ -101,9 +101,16 @@
             padding: 10px 24px;
         }
 
-        .nav-logo-img {
-            height: 36px;
-            mix-blend-mode: lighten;
+        .nav-logo-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: #fff;
+        }
+
+        .nav-logo-text span {
+            color: var(--accent-red);
         }
 
         .nav-links {
@@ -535,10 +542,17 @@
             margin-bottom: 64px;
         }
 
-        .footer-logo img {
-            height: 44px;
+        .footer-logo .logo-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #fff;
             margin-bottom: 20px;
-            mix-blend-mode: lighten;
+            display: block;
+        }
+
+        .footer-logo .logo-text span {
+            color: var(--accent-red);
         }
 
         .footer-logo p {
@@ -683,9 +697,7 @@
 
     <!-- ===== NAVIGATION ===== -->
     <nav id="navbar">
-        <a href="#">
-            <img src="logo.png" alt="Virtualis" class="nav-logo-img">
-        </a>
+        <a href="#" class="nav-logo-text">Virtual<span>IS</span></a>
         <div class="nav-links" id="navLinks">
             <a href="#about">O nama</a>
             <a href="#services">Usluge</a>
@@ -855,7 +867,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-logo">
-                    <img src="logo.png" alt="Virtualis">
+                    <div class="logo-text">Virtual<span>IS</span></div>
                     <p>Hrvatska IT tvrtka specijalizirana za sigurnost, usklađenost i digitalne inovacije.</p>
                 </div>
                 <div>
