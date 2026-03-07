@@ -103,14 +103,34 @@
 
         .nav-logo-text {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 900;
+            font-size: 1.5rem;
+            font-weight: 800;
             letter-spacing: -0.5px;
             color: #fff;
+            display: flex;
+            align-items: baseline;
         }
 
-        .nav-logo-text span {
+        .nav-logo-text .red {
             color: var(--accent-red);
+            position: relative;
+            font-weight: 900;
+        }
+
+        .nav-logo-text .dashes {
+            display: inline-flex;
+            flex-direction: column;
+            gap: 2px;
+            margin-left: 1px;
+            position: relative;
+            top: -2px;
+        }
+
+        .nav-logo-text .dashes span {
+            width: 8px;
+            height: 2px;
+            background: var(--accent-red);
+            border-radius: 1px;
         }
 
         .nav-links {
@@ -544,15 +564,41 @@
 
         .footer-logo .logo-text {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 900;
+            font-size: 1.6rem;
+            font-weight: 800;
             color: #fff;
-            margin-bottom: 20px;
-            display: block;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: baseline;
         }
 
-        .footer-logo .logo-text span {
+        .footer-logo .logo-text .red {
             color: var(--accent-red);
+            font-weight: 900;
+        }
+
+        .footer-logo .logo-text .dashes {
+            display: inline-flex;
+            flex-direction: column;
+            gap: 2px;
+            margin-left: 1px;
+            position: relative;
+            top: -2px;
+        }
+
+        .footer-logo .logo-text .dashes span {
+            width: 8px;
+            height: 2px;
+            background: var(--accent-red);
+            border-radius: 1px;
+        }
+
+        .footer-tagline {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
         }
 
         .footer-logo p {
@@ -697,7 +743,8 @@
 
     <!-- ===== NAVIGATION ===== -->
     <nav id="navbar">
-        <a href="#" class="nav-logo-text">Virtual<span>IS</span></a>
+        <a href="#" class="nav-logo-text">Virtual<span class="red">I</span><span class="red">S</span><span
+                class="dashes"><span></span><span></span><span></span><span></span></span></a>
         <div class="nav-links" id="navLinks">
             <a href="#about">O nama</a>
             <a href="#services">Usluge</a>
@@ -867,7 +914,9 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-logo">
-                    <div class="logo-text">Virtual<span>IS</span></div>
+                    <div class="logo-text">Virtual<span class="red">I</span><span class="red">S</span><span
+                            class="dashes"><span></span><span></span><span></span><span></span></span></div>
+                    <div class="footer-tagline">Cloud Solutions</div>
                     <p>Hrvatska IT tvrtka specijalizirana za sigurnost, usklađenost i digitalne inovacije.</p>
                 </div>
                 <div>
